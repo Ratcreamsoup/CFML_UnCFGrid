@@ -5,19 +5,30 @@
 
 	<cffunction name="initArray" access="remote" output="false" returntype="void">
 		<cfscript>
-			SESSION.arrData = [];
-			arrayAppend(SESSION.arrData, { ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true });	
-			arrayAppend(SESSION.arrData, { ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true });
-			arrayAppend(SESSION.arrData, { ID =  2, URL = 'http://www.pcgameshardware.de/', TEXT = 'PC Games Hardware', FLAG = true });
-			arrayAppend(SESSION.arrData, { ID =  3, URL = 'http://www.buffed.de/', TEXT = 'Buffed', FLAG = true });
-			arrayAppend(SESSION.arrData, { ID =  4, URL = 'http://www.golem.de/', TEXT = 'Golem', FLAG = false });
-			arrayAppend(SESSION.arrData, { ID =  5, URL = 'http://www.4players.de/', TEXT = '4Players', FLAG = false });
-			arrayAppend(SESSION.arrData, { ID =  6, URL = 'http://www.linux-magazin.de/', TEXT = 'Linux Magazin', FLAG = false });
-			arrayAppend(SESSION.arrData, { ID =  7, URL = 'http://www.linux-community.de/', TEXT = 'Linux Community', FLAG = false });
-			arrayAppend(SESSION.arrData, { ID =  8, URL = 'http://www.areamobile.de/', TEXT = 'AreaMobile', FLAG = true });
-			arrayAppend(SESSION.arrData, { ID =  9, URL = 'http://www.readmore.de/', TEXT = 'Readmore', FLAG = false });
-			arrayAppend(SESSION.arrData, { ID = 10, URL = 'http://www.computec.de/', TEXT = 'Computec Media GmbH', FLAG = true });	
+			var local = {};
+			local.arrData = arrayNew(1);
+			local.structRow = { ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  2, URL = 'http://www.pcgameshardware.de/', TEXT = 'PC Games Hardware', FLAG = true };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  3, URL = 'http://www.buffed.de/', TEXT = 'Buffed', FLAG = true };
+			arrayAppend(local.arrData,local.structRow);;
+			local.structRow = { ID =  4, URL = 'http://www.golem.de/', TEXT = 'Golem', FLAG = false };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  5, URL = 'http://www.4players.de/', TEXT = '4Players', FLAG = false };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  6, URL = 'http://www.linux-magazin.de/', TEXT = 'Linux Magazin', FLAG = false };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  7, URL = 'http://www.linux-community.de/', TEXT = 'Linux Community', FLAG = false };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  8, URL = 'http://www.areamobile.de/', TEXT = 'AreaMobile', FLAG = true };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID =  9, URL = 'http://www.readmore.de/', TEXT = 'Readmore', FLAG = false };
+			arrayAppend(local.arrData,local.structRow);
+			local.structRow = { ID = 10, URL = 'http://www.computec.de/', TEXT = 'Computec Media GmbH', FLAG = true };
+			arrayAppend(local.arrData,local.structRow);	
 			SESSION.idMax = 10;
+			SESSION.arrData = local.arrData;
 			return;
 		</cfscript>
 	</cffunction>
@@ -30,7 +41,7 @@
 			local.structTmp = {};
 			local.lstKeys	= 'ID,URL,TEXT,FLAG';
 			local.iNoKeys	= listLen(local.lstKeys);
-			local.qReturn 	= queryNew(local.lstKeys,'integer,varchar,varchar,boolean');
+			local.qReturn 	= queryNew(local.lstKeys,'integer,varchar,varchar,bit');
 
 			for (local.i=1; local.i lte arrayLen(SESSION.arrData); local.i++) {
 				local.structTmp[local.i] = SESSION.arrData[local.i];
@@ -138,7 +149,7 @@
 					}
 					local.value=arguments.gridchanged[local.colname];
 					SESSION.arrData[local.arrIdx][local.colname] = local.value;					
-				} elseif (arguments.gridaction eq "D") {
+				} else if (arguments.gridaction eq "D") {
 					arrayDeleteAt(SESSION.arrData, local.arrIdx);					
 				}
 			}
