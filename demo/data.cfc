@@ -5,18 +5,18 @@
 
 	<cffunction name="initArray" access="remote" output="false" returntype="void">
 		<cfscript>
-			SESSION.arrData = [
-				{ ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true },
-				{ ID =  2, URL = 'http://www.pcgameshardware.de/', TEXT = 'PC Games Hardware', FLAG = true },
-				{ ID =  3, URL = 'http://www.buffed.de/', TEXT = 'Buffed', FLAG = true },
-				{ ID =  4, URL = 'http://www.golem.de/', TEXT = 'Golem', FLAG = false },
-				{ ID =  5, URL = 'http://www.4players.de/', TEXT = '4Players', FLAG = false },
-				{ ID =  6, URL = 'http://www.linux-magazin.de/', TEXT = 'Linux Magazin', FLAG = false },
-				{ ID =  7, URL = 'http://www.linux-community.de/', TEXT = 'Linux Community', FLAG = false },
-				{ ID =  8, URL = 'http://www.areamobile.de/', TEXT = 'AreaMobile', FLAG = true },
-				{ ID =  9, URL = 'http://www.readmore.de/', TEXT = 'Readmore', FLAG = false },
-				{ ID = 10, URL = 'http://www.computec.de/', TEXT = 'Computec Media GmbH', FLAG = true },
-			];
+			SESSION.arrData = [];
+			arrayAppend(SESSION.arrData, { ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true });	
+			arrayAppend(SESSION.arrData, { ID =  1, URL = 'http://www.pcgames.de/', TEXT = 'PC Games', FLAG = true });
+			arrayAppend(SESSION.arrData, { ID =  2, URL = 'http://www.pcgameshardware.de/', TEXT = 'PC Games Hardware', FLAG = true });
+			arrayAppend(SESSION.arrData, { ID =  3, URL = 'http://www.buffed.de/', TEXT = 'Buffed', FLAG = true });
+			arrayAppend(SESSION.arrData, { ID =  4, URL = 'http://www.golem.de/', TEXT = 'Golem', FLAG = false });
+			arrayAppend(SESSION.arrData, { ID =  5, URL = 'http://www.4players.de/', TEXT = '4Players', FLAG = false });
+			arrayAppend(SESSION.arrData, { ID =  6, URL = 'http://www.linux-magazin.de/', TEXT = 'Linux Magazin', FLAG = false });
+			arrayAppend(SESSION.arrData, { ID =  7, URL = 'http://www.linux-community.de/', TEXT = 'Linux Community', FLAG = false });
+			arrayAppend(SESSION.arrData, { ID =  8, URL = 'http://www.areamobile.de/', TEXT = 'AreaMobile', FLAG = true });
+			arrayAppend(SESSION.arrData, { ID =  9, URL = 'http://www.readmore.de/', TEXT = 'Readmore', FLAG = false });
+			arrayAppend(SESSION.arrData, { ID = 10, URL = 'http://www.computec.de/', TEXT = 'Computec Media GmbH', FLAG = true });	
 			SESSION.idMax = 10;
 			return;
 		</cfscript>
