@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CFML_UnCFGrid Demo</title>
+</head>
+<body>
+	<h1>CFML_UnCFGrid Demo</h1>
+
+	<h2>Table 1</h2>
+	<p>Simple non-editable grid generated from webservice.</p>
+	<div class="tableContainer">
+		<table id="myGrid1" class="striped" cellspacing="0" width="100%">
+		 	<thead>
+		        <tr>
+		            <th data-ucfg-data="ID">ID</th>
+					<th data-ucfg-data="URL" style="width: 400px;">URL</th>
+					<th data-ucfg-data="TEXT">Text</th>
+					<th data-ucfg-data="FLAG" style="width: 63px;">Check</th>
+		        </tr>
+		    </thead>	    
+		</table>
+	</div>
+
+	<h2>Table 2</h2>
+	<p>Editable grid with separate form to add new rows.</p>
+	<div class="tableContainer">
+		<table id="myGrid2" class="striped" cellspacing="0" width="100%">
+		 	<thead>
+		        <tr>
+		            <th data-ucfg-data="ID" data-ucfg-primary="id">ID</th>
+					<th data-ucfg-data="URL" data-ucfg-edit="notempty" style="width: 400px;">URL</th>
+					<th data-ucfg-data="TEXT" data-ucfg-edit>Text</th>
+					<th data-ucfg-data="FLAG" data-ucfg-check style="width: 63px;">Check</th>			
+					<th style="width: 13px;" data-ucfg-del>&nbsp;</th>
+		        </tr>
+		    </thead>	    
+		</table>
+	</div>
+
+	<h3>Add Data to Table 2</h3>
+	<form name="formInsertData" id="formInsertData" class="addForm">			
+		<input type="hidden" name="someId" value="1234">
+			<ol>
+				<li>
+					<label for="URL">URL:</label> 
+					<input type="text" name="URL" id="URL" style="width:400px;">
+				</li>
+				<li>
+					<label for="text">Text:</label>
+					<input type="text" name="TEXT" id="TEXT" style="width:400px;">
+				</li>
+				<li>
+					<label for="FLAG">Check:</label>
+					<input type="checkbox" name="FLAG" id="FLAG" value="true">
+				</li>
+				<li>
+					<input type="button" id="insertData" value="Add Link" /><div id="insertResult"></div>
+				</li>
+			</ol>		
+	</form>	
+
+	<h3>Reset Table 2</h3>
+	<button type="button" id="resetAll">Reset everything</button>	
+
+
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>	
+	<script src="//cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="../uncfgrid.min.js" type="text/javascript" charset="utf-8"></script>
+	<script>
+		$(document).ready(function() {
+			
+			// init Grid
+			var elemGrid1 = $('#myGrid1');
+			elemGrid1.UnCFGrid({
+				getUrl: "./data.cfc?method=getData",
+				getParams: {"someId":1234},				
+				showNullRows: false,
+				dtOptions: {								
+					pageLength	: 5,
+					columnDefs : [	
+						{ visible: false, targets: [ 0 ] },					
+						{ className: "colcenter", "targets": [ 3 ] },
+					],
+					order: [[ 0, "DESC" ]],
+				}
+			});			
+
+			// init Grid
+			var elemGrid2 = $('#myGrid2');
+			elemGrid2.UnCFGrid({
+				getUrl: "./data.cfc?method=getData",
+				getParams: {"someId":1234},
+				updUrl: "./data.cfc?method=editData",
+				showNullRows: false,
+				dtOptions: {								
+					pageLength	: 5,
+					columnDefs : [
+						{ visible: false, targets: [ 0 ] },
+						{ className: "colcenter", "targets": [ 3,4 ] },
+					],
+					order: [[ 0, "DESC" ]],
+				}
+			});
+
+			// insert form
+			var oGridDT2 = elemGrid2.DataTable();
+			$('#insertData').click(function(){
+				var myForm = $('#formInsertData');
+				var myData = myForm.serialize();
+				$.ajax({
+					type: 'POST',
+					url: "./data.cfc?method=addData",
+					cache: false,
+					data: myData,
+					dataType: 'json',			  
+					success: function(data){
+						var strP = '<p>';
+						if (data.BSUCCESS == false) {
+							strP = '<p style="color:#FF0000">'
+						} 
+						$('#insertResult').html(strP+data.STRMESSAGE+'</p>').show().fadeOut(1000);						
+						myForm.trigger('reset');
+					},
+					error : function(jqXHR, textStatus, errorThrown) {
+						alert("Error on Insert\n Error: "+textStatus+"\n Message: "+errorThrown);
+						$('#insertResult').html('<p>Link was not added.</p>').show().fadeOut(1000);
+					},
+					complete: function() {
+						oGridDT2.ajax.reload(null, false); // paging is not reset on reload
+					}
+					});
+			});
+
+			$('#resetAll').click(function(){
+				$.ajax({
+					type: 'POST',
+					url: "./data.cfc?method=initArray",
+					cache: false,				
+					dataType: 'json',			  
+					complete: function(data){						
+						oGridDT2.ajax.reload(null, true); 						
+					}
+				});			
+			});
+	
+		});
+	</script>
+
+	<link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" />
+	<link rel="stylesheet" type="text/css" href="./custom.css" />
+
+</body>
+</html>

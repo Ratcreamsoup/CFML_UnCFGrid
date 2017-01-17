@@ -1,0 +1,59 @@
+body {
+	font-family: Arial, Helvetica;
+}
+.tableContainer {
+	width: 80%;	
+}
+table.striped tr.odd { background-color: #F7F7F7; }
+table.striped tr.even { background-color: white; }
+table.striped td {padding: 2px 10px !important;}
+td.colright {text-align: right}
+td.colcenter, td.ucfgDelete {text-align: center; vertical-align: middle;}
+.ucfgDelete div {
+	background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjxzdmcgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIyLjU0MzEyOTk5NDU5MjE2RS0wNiAtMC4xOTQ2NTU5OTk1NDEyODMgMTEzLjUyNjk5Nzg4NDExNiAxMTMuNTI3NjU2MTgyNjQ3IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImRlZjAiIHgxPSIwLjQ5OTk5NSIgeDI9IjAuNDk5OTk1IiB5MT0iMS43Mzc3OUUtMDYiIHkyPSIxLjAwMDAxIj48c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiNGMjdFNUUiLz48c3RvcCBvZmZzZXQ9IjAuNSIgc3RvcC1jb2xvcj0iI0VCMUMyNCIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iI0NFMjIyOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxnPjxwYXRoIGQ9Ik0yLjU0MzEzRS0wNiw4Ny41MzQ3TDMwLjk2NCw1Ni41NjQgMi41NDMxM0UtMDYsMjUuNjAxMyAyNS43OTczLC0wLjE5NDY1NiA1Ni43NjI3LDMwLjc3MDcgODcuNzI2NywtMC4xOTQ2NTYgMTEzLjUyNywyNS42MDEzIDgyLjU2MjcsNTYuNTY5MyAxMTMuNTI3LDg3LjUzNDcgODcuNzI2NywxMTMuMzI5IDU2Ljc2NjcsODIuMzY0IDI1Ljc5NzMsMTEzLjMzMyAyLjU0MzEzRS0wNiw4Ny41MzQ3eiIgZmlsbD0iIzk5MDAwMCIvPjxwYXRoIGQ9Ik0xMTEuNjQxLDg3LjUzNDFMODAuNjc2OCw1Ni41NzAxIDExMS42NDEsMjUuNjAyMSA4Ny43MjYxLDEuNjkwMTQgNTYuNzYzNSwzMi42NTU1IDI1Ljc5NjgsMS42OTAxNCAxLjg4NDgsMjUuNjAyMSAzMi44NTAxLDU2LjU2NDggMS44ODQ4LDg3LjUzNDEgMjUuNzk2OCwxMTEuNDQ3IDU2Ljc2NzUsODAuNDc4MSA4Ny43MjYxLDExMS40NDMgMTExLjY0MSw4Ny41MzQxeiIgZmlsbD0idXJsKCNkZWYwKSIvPjxwYXRoIGQ9Ik01My41NTA3LDQyLjE1OTdDNjkuOTc3MywzNi45MTg0LDg2LjI5ODcsMzUuMDc4NCwxMDEuMDM2LDM2LjIwNzdMMTExLjY0LDI1LjYwMjQgODcuNzI2NywxLjY5MDQgNTYuNzYyNywzMi42NTU3IDI1Ljc5NzMsMS42OTA0IDEuODg1MzQsMjUuNjAyNCAyOS4wMzQ3LDUyLjc0OTFDMzYuNTE4Nyw0OC41NjUxLDQ0LjczODcsNDQuOTcxNyw1My41NTA3LDQyLjE1OTd6IiBmaWxsPSIjRkZGRkZGIiBzdHlsZT0iZmlsbC1vcGFjaXR5OjAuMTAxOTYwNzg0MzEzNzI1Ii8+PC9nPjwvc3ZnPg==');
+	background-repeat: no-repeat;
+	height: 13px;
+	width: 13px;			
+	cursor: pointer;
+}
+div.UnCFGrid_savereset{
+	float:left;
+    padding: 0.5em 0em;	   
+}
+.UnCFGrid_savereset button{
+	margin-right: 2px;
+}
+.ucfgChanged {		
+	outline: 2px solid #c0ff00;
+}
+.dataTable span[contenteditable] {
+	float:left; 
+	width: 100%;
+	min-width: 100%;
+}
+
+.addForm ol {
+	display: block;
+	list-style-type: decimal;
+}
+
+.addForm label {
+	    width: 50px;
+	    display: block;
+	    float: left;
+}
+
+.addForm li {
+	list-style-type: none;
+	margin-bottom: 10px;
+	clear: left;
+}
+
+div#insertResult {
+	display: inline-block;
+    margin-left: 5px;
+}
+
+#insertResult p {
+	margin: 0;
+}
