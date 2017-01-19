@@ -2,7 +2,9 @@
  * jQuery UnCFGrid Plugin
  * Requires DataTables
  *
- * Copyright 2017, Software Freedom Conservancy, Inc.
+ * Copyright 2017, Markus Wollny
+ *
+ * Licensed under MIT License
  */
 ;( function( $, window, document, undefined ) {
 
