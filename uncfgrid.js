@@ -25,7 +25,7 @@
 				searching	: false,
 				paging	 	: true,
 				dom 		: "rt<'UnCFGrid_savereset'>p",
-				order: [[ 0, "ASC" ]]
+				order: [[ 0, "asc" ]]
 			},
 			language: {
 				save: 'Save',
