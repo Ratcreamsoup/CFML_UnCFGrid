@@ -163,7 +163,7 @@
 				this.dtOptions = $.extend(true, {}, this.getGridConfig(), this.settings.dtOptions);					
 
 				// create DataTable
-				console.log(JSON.stringify(this.dtOptions));
+				// console.log(JSON.stringify(this.dtOptions));
 				this.objDt = this.elem.DataTable(this.dtOptions);
 
 				if (_isEditable) {
