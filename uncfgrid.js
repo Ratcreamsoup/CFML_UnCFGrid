@@ -380,9 +380,20 @@
 				    	}, 
 				    	sortColIdx = data.order[0].column;						    
 					sParams.gridsortcolumn = data.columns[sortColIdx].data;
-					for (var key in settings.getParams) {
-						if (!sParams.hasOwnProperty(key) && settings.getParams.hasOwnProperty(key)) {
-							sParams[key] = settings.getParams[key];
+					switch(typeof settings.getParams) {
+						case 'object':
+							var addSettings = settings.getParams;
+						break;
+						case 'function':							
+							var addSettings = settings.getParams();
+						break;
+							throw new Error("getParams neither object nor function.\nYou need to pass an object or a function that returns one");
+						default:
+
+					}
+					for (var key in addSettings) {
+						if (!sParams.hasOwnProperty(key) && addSettings.hasOwnProperty(key)) {
+							sParams[key] = addSettings[key];
 						}
 					}
 			        return sParams;			            
